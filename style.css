@@ -5,6 +5,7 @@
     --text-clr: #001F3F;
     --grey-clr-200: #505050;
     --grey-clr-100: #808080;
+    --green-clr: #429e2d;
 
     --accent-clr: #FF6B6B;
     --primary-clr: #dddddd;
@@ -109,6 +110,7 @@ li {
     border-radius: 8px;
     background-color: var(--secondary-clr);
     font-family: var(--ff);
+    cursor: pointer;
 }
 
 .tasks {
@@ -122,6 +124,20 @@ li {
     background-color: var(--primary-clr);
     border-radius: 6px;
     padding: 0.875rem 1rem;
+}
+
+.row {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.row > input {
+    cursor: pointer;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: var(--green-clr);
 }
 
 #noTasks {
@@ -154,12 +170,14 @@ li {
     background-color: transparent;
     border: none;
     color: var(--secondary-clr);
+    cursor: pointer;
 }
 
 .deleteButton {
     background-color: transparent;
     border: none;
     color: var(--accent-clr);
+    cursor: pointer;
 }
 
 .footer {

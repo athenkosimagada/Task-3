@@ -33,7 +33,8 @@ function createTask() {
     
     var task = {
         id: Date.now(),
-        text: inputTask.value
+        text: inputTask.value,
+        completed: false
     };
     taskList.push(task);
     saveTasksToLocalStorage();
@@ -65,7 +66,10 @@ function renderTask(task) {
     var li = document.createElement("li");
     li.classList.add("task");
     li.innerHTML = `
-        <span class="text">${task.text}</span>
+        <div class="row">
+            <input type="checkbox" ${task.completed ? 'checked' : ''} onchange="toggleCompletion('${task.id}')" />
+            <span class="text ${task.completed ? 'completed' : ''}">${task.text}</span>
+        </div>
         <div class="btn-container">
             <button class="editButton" onclick="editTask('${task.id}')">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -82,6 +86,18 @@ function renderTask(task) {
     `;
 
     tasks.appendChild(li);
+}
+
+function toggleCompletion(taskId) {
+    var task = taskList.find(function (task) {
+        return task.id == taskId;
+    });
+
+    if (task) {
+        task.completed = !task.completed;
+        saveTasksToLocalStorage();
+        renderTasks();
+    }
 }
 
 function renderTasks() {
